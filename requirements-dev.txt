@@ -1,0 +1,24 @@
+PYTHON ?= python3
+APP_DIR = app
+
+.PHONY: help install test lint run
+
+help:
+	@echo "Available commands:"
+	@echo "  make install   Install app dependencies"
+	@echo "  make test      Run unit tests"
+	@echo "  make lint      Compile Python files"
+	@echo "  make run       Run the Flask app locally"
+
+install:
+	$(PYTHON) -m pip install -r $(APP_DIR)/requirements.txt
+	$(PYTHON) -m pip install pytest black
+
+test:
+	pytest -q $(APP_DIR)/tests
+
+lint:
+	$(PYTHON) -m compileall $(APP_DIR)
+
+run:
+	$(PYTHON) $(APP_DIR)/app.py

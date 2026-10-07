@@ -1,0 +1,205 @@
+# Infrastructure Automation Platform
+
+A production-focused DevOps portfolio project designed to showcase infrastructure automation, secure cloud provisioning, Kubernetes deployment, and CI/CD workflows.
+
+## Project Overview
+
+This repository demonstrates a modern cloud-native engineering workflow using:
+
+- Terraform for infrastructure provisioning
+- Ansible for configuration management
+- Docker for application packaging
+- Kubernetes for orchestration
+- GitHub Actions for automation and validation
+- Python Flask for a lightweight service layer
+
+The goal is to present a polished, enterprise-style portfolio project that highlights practical DevOps experience for cloud, platform, and infrastructure engineering roles.
+
+## Architecture
+
+```mermaid
+graph TD
+    A[Developer] --> B[GitHub Repository]
+    B --> C[GitHub Actions CI/CD]
+    C --> D[Terraform]
+    C --> E[Ansible]
+    D --> F[AWS Network + IAM]
+    E --> G[EC2 / Server Hardening]
+    F --> H[Containerized App]
+    G --> H
+    H --> I[Kubernetes Deployment]
+    I --> J[Health Checks + Autoscaling]
+    J --> K[Monitoring / Operations]
+```
+
+## Repository Layout
+
+```text
+.
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+├── ansible/
+│   ├── inventory/
+│   │   └── hosts.ini
+│   ├── playbooks/
+│   │   └── provision.yml
+│   └── templates/
+│       └── app.service.j2
+├── app/
+│   ├── __init__.py
+│   ├── app.py
+│   ├── requirements.txt
+│   └── tests/
+│       └── test_app.py
+├── docs/
+│   └── architecture.md
+├── infra/
+│   └── terraform/
+│       ├── main.tf
+│       ├── outputs.tf
+│       ├── variables.tf
+│       └── versions.tf
+├── k8s/
+│   └── deployment.yaml
+├── scripts/
+│   └── bootstrap.sh
+├── .gitignore
+├── .pre-commit-config.yaml
+├── Dockerfile
+├── LICENSE
+├── Makefile
+├── README.md
+└── requirements-dev.txt
+```
+
+## Core Capabilities
+
+### Infrastructure as Code
+- Reusable Terraform definitions for networking, security, and IAM policies
+- Version-controlled cloud infrastructure for repeatable deployments
+
+### Configuration Automation
+- Ansible provisioning for baseline server configuration and service setup
+- Declarative process for consistent environment setup
+
+### Containerization
+- Dockerized application for consistent runtime behavior across environments
+- Health endpoints and production-friendly configuration
+
+### Kubernetes Operations
+- Deployment manifests with readiness and liveness checks
+- Scaling, resource constraints, and disruption protection patterns
+
+### CI/CD Validation
+- Automated syntax and configuration checks in GitHub Actions
+- Linting and validation steps across app, infrastructure, and config layers
+
+## Prerequisites
+
+Before using this project, ensure the following are installed:
+
+- Terraform >= 1.6
+- Ansible >= 2.15
+- Docker
+- kubectl
+- Python >= 3.11
+- AWS CLI
+
+## Quick Start
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/aadiops/infrastructure-automation.git
+cd infrastructure-automation
+```
+
+### 2. Initialize infrastructure
+
+```bash
+cd infra/terraform
+terraform init
+terraform plan
+terraform apply
+```
+
+### 3. Provision configuration
+
+```bash
+cd ../../ansible
+ansible-playbook -i inventory/hosts.ini playbooks/provision.yml
+```
+
+### 4. Build the application container
+
+```bash
+docker build -t infrastructure-automation:latest .
+```
+
+### 5. Deploy on Kubernetes
+
+```bash
+kubectl apply -f k8s/deployment.yaml
+```
+
+### 6. Run the app locally
+
+```bash
+cd app
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python app.py
+```
+
+## Health Endpoints
+
+The example service exposes several endpoints for monitoring and validation:
+
+- `/` - service root
+- `/healthz` - basic health check
+- `/readyz` - readiness validation
+- `/api/status` - operational status payload
+- `/api/metrics` - metrics integration endpoint
+
+## Security Best Practices
+
+- Least privilege IAM model
+- Public traffic restricted through defined ingress rules
+- Runtime environment configuration via environment variables
+- Secrets and credentials should be managed outside source control
+- Deployment patterns aligned with cloud-native security practices
+
+## Monitoring and Operations
+
+This project reflects common platform engineering concerns:
+
+- service health checks
+- resource consumption awareness
+- fail-safe deployment configuration
+- automation-friendly operations
+
+## Future Enhancements
+
+- Add Prometheus and Grafana monitoring stack
+- Introduce Helm charts for simplified deployment
+- Add multi-environment Terraform modules
+- Add ArgoCD for GitOps delivery
+- Add automated rollback testing
+- Expand Infrastructure as Code patterns for production workloads
+
+## License
+
+This project is licensed under the Apache License 2.0.
+
+## Professional Value
+
+This repository is structured to signal practical experience in:
+
+- cloud platform provisioning
+- automation and system hardening
+- deployment reliability
+- container orchestration
+- developer productivity tooling
+- operating production-ready services at scale
